@@ -13,6 +13,31 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0d15">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="vv-build" content="07d9ed8286">
+<script>
+/* GitHub Pages lets browsers keep the page for up to 10 minutes. This asks for a tiny version file that is never cached,
+   and if a newer build exists it opens that build once, under a fresh address, so visitors never sit on an old copy. */
+(function(){
+  try{
+    if(!/(^|\.)vaseey\.com$|\.github\.io$/.test(location.hostname)){return;}
+    var m=document.querySelector('meta[name="vv-build"]'),cur=m&&m.getAttribute('content');
+    if(!cur||cur.charAt(0)==='_'){return;}
+    var u=new URL(location.href);
+    fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){
+      var b=j&&j.b;if(!b){return;}
+      if(b===cur){
+        if(u.searchParams.has('v')){u.searchParams.delete('v');history.replaceState(null,'',u.pathname+u.search+u.hash);}
+        return;
+      }
+      var k='vv-build-tried';
+      if(sessionStorage.getItem(k)===b){return;}
+      sessionStorage.setItem(k,b);
+      u.searchParams.set('v',b);
+      location.replace(u.toString());
+    }).catch(function(){});
+  }catch(e){}
+})();
+</script>
 <meta charset="utf-8">
 <title>Vasudevan Venkataraman</title>
 <meta name="claude:viewport-fit-sides" content="cover">
