@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0d15">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta name="vv-build" content="db6a08832f">
+<meta name="vv-build" content="9f5962038b">
 <script>
 /* GitHub Pages lets browsers keep the page for up to 10 minutes. This asks for a tiny version file that is never cached,
    and if a newer build exists it opens that build once, under a fresh address, so visitors never sit on an old copy. */
@@ -4109,7 +4109,8 @@ kbd{font-family:var(--mono);font-size:.78rem;padding:.12rem .4rem;border:1px sol
     career:{n:'Experience',c:'--epic',g:'Patch notes: 9+ years in UX, 15 in total',h:'Service log: 9+ years in UX, 15 in total',q:'Service log: 9+ years in UX, 15 in total',r:'Odometer: 9+ years in UX, 15 in total'},
     contact:{n:'Contact',c:'--legendary',g:'Invite sent: open to Principal and leadership roles',h:'Your table is ready: open to Principal and leadership roles',q:'Reservations open: Principal and leadership roles',r:'Green light: open to Principal and leadership roles'}
   };
-  var ticket=0;
+  /* each line keeps the number of its place on the page, so scrolling down counts up and scrolling back up counts down */
+  var FEED_ORDER=['dhruva','vanix','onetrace','tapeark','gharpe','perks','skills','party','career','contact'];
   var ST_=['placed','confirmed','in the kitchen','plated','served','delivered'];
   var RT_=['Checkpoint','Curve','Straight','Hairpin','Chicane','Apex'];
   function two(cls,txt){var s=document.createElement('span');s.className=cls;s.textContent=txt;return s;}
@@ -4117,7 +4118,7 @@ kbd{font-family:var(--mono);font-size:.78rem;padding:.12rem .4rem;border:1px sol
     if(state.boring||reduce||!feedEl){return;}
     var d=FEED[key];
     if(!d){return;}
-    ticket++;
+    var ticket=FEED_ORDER.indexOf(key)+1;
     var el=document.createElement('div');
     el.className='kf';
     el.style.setProperty('--kc','var('+d.c+')');
@@ -4128,7 +4129,7 @@ kbd{font-family:var(--mono);font-size:.78rem;padding:.12rem .4rem;border:1px sol
     tag.appendChild(two('g','VV ▸'));
     tag.appendChild(two('c','#'+ticket));
     tag.appendChild(two('t',cta?'Table':'Order '+ticket));
-    tag.appendChild(two('r',cta?'Finish line':(rt==='Straight'?'Straight':rt+' '+ticket)));
+    tag.appendChild(two('r',cta?'Finish line':rt+' '+ticket));
     var txt=document.createElement('span');
     txt.appendChild(two('g',d.g||d.x));
     txt.appendChild(two('c',d.h||d.x));
